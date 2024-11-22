@@ -17,8 +17,6 @@ public class Motorista {
         this.telefone = telefone;
     }
 
-    public Motorista (){}
-
     public String getNome() {
         return nome;
     }
@@ -27,20 +25,10 @@ public class Motorista {
         this.nome = nome;
     }
 
-    public String getCnh() {
-        return cnh;
-    }
+    public Motorista (){}
 
-    public void setCnh(String cnh) {
-        this.cnh = cnh;
-    }
-
-    public double getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(double telefone) {
-        this.telefone = telefone;
+    public List<Motorista> getMotoristasCadastrados() {
+        return cadastroMotorista;
     }
 
     public void CadastroMotoristas(){
@@ -55,6 +43,7 @@ public class Motorista {
         Motorista motorista = new Motorista(nome,cnh,telefone);
         cadastroMotorista.add(motorista);
     }
+
     public void VisualizarMotoristas() {
         for (Motorista motor : cadastroMotorista) {
             System.out.println(motor);
@@ -70,6 +59,8 @@ public class Motorista {
             cadastroMotorista.remove(remover - 1);
         }
 
+
+
     @Override
     public String toString() {
         return "Motorista: " +
@@ -77,8 +68,5 @@ public class Motorista {
                 ", Cnh: " + cnh +
                 ", Telefone: " + telefone
                ;
-    }
-    public List<Motorista> getMotoristasCadastrados() {
-        return cadastroMotorista;
     }
 }

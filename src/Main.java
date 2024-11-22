@@ -18,13 +18,14 @@ public class Main {
                     6 - Remover caminhão
                     7 - Cadastrar entrega
                     8 - Listar entregas
+                    9 - Iniciar entrega 
                     """);
             int menu = scanner.nextInt();
 
-            if (menu == 1) {
+            if (menu == 1){
                 motorista.CadastroMotoristas();
             }
-            if (menu == 2) {
+            if (menu == 2){
                 motorista.VisualizarMotoristas();
             }
             if(menu == 3){
@@ -36,11 +37,17 @@ public class Main {
             if(menu == 5){
                 caminhao.listarCaminhoes();
             }
-            if (menu == 6) {
+            if (menu == 6){
                 caminhao.removerCaminhao();
             }
             if(menu == 7){
-               entrega.cadastrarEntrega(motorista.getMotoristasCadastrados());
+               entrega.cadastrarEntrega(motorista.getMotoristasCadastrados(), caminhao.getCaminhoesCadastrados());
+            }
+            if(menu == 8){
+                entrega.listarEntregas();
+            }
+            if(menu == 9){
+                entrega.iniciarEntrega(entrega);
             }
         }
 

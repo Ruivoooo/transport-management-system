@@ -18,28 +18,8 @@ public class Caminhao {
 
     public Caminhao (){}
 
-    public String getPlaca() {
-        return placa;
-    }
-
-    public void setPlaca(String placa) {
-        this.placa = placa;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public String getCapacDisponivel() {
-        return capacDisponivel;
-    }
-
-    public void setCapacDisponivel(String capacDisponivel) {
-        this.capacDisponivel = capacDisponivel;
+    public List<Caminhao> getCaminhoesCadastrados() {
+        return caminhoesCadastrados;
     }
 
     public void cadastrarCaminhao(){
