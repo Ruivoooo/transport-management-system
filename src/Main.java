@@ -19,6 +19,7 @@ public class Main {
                     7 - Cadastrar entrega
                     8 - Listar entregas
                     9 - Iniciar entrega 
+                    10 - Finalizar entrega
                     """);
             int menu = scanner.nextInt();
 
@@ -48,6 +49,9 @@ public class Main {
             }
             if(menu == 9){
                 entrega.iniciarEntrega(entrega);
+            }
+            if(menu == 10){
+                entrega.finalizarEntregas(entrega);
             }
         }
 

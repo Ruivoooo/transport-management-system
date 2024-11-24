@@ -23,8 +23,6 @@ public class Entrega implements Rastreavel {
     public Entrega() {
     }
 
-    Motorista motorista = new Motorista();
-
     private List<Motorista> motoristas;
     private List<Caminhao> caminhoes;
 
@@ -104,7 +102,7 @@ public class Entrega implements Rastreavel {
     }
 
     @Override
-    public void iniciarEntrega(Entrega entrega) {
+    public void iniciarEntrega(Entrega entrega){
         for (Entrega entrega1 : entregasCadastradas) {
             System.out.println(entrega1);
         }
@@ -120,6 +118,19 @@ public class Entrega implements Rastreavel {
             }
     }
 
+   public void finalizarEntregas(Entrega entrega){
+        for(Entrega entrega1 : entregasCadastradas) {
+            if(entrega1.status == "Em transporte") {
+                System.out.println(entrega1);
+            }
+        }
+        System.out.println("Qual entrega você quer finalizar ? ");
+                int finalizar = scanner.nextInt() - 1;
+                if(finalizar >= 0 && finalizar < entregasCadastradas.size()){
+                    Entrega entregaFinalizada = entregasCadastradas.get(finalizar);
+                    entregaFinalizada.status = "Finalizado";
+                }
+            }
 
     @Override
     public String toString() {
