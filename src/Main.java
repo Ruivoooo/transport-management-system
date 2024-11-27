@@ -19,7 +19,7 @@ public class Main {
                     7 - Cadastrar entrega
                     8 - Listar entregas
                     9 - Iniciar entrega 
-                    10 - Finalizar entrega
+                    10- Finalizar entrega
                     """);
             int menu = scanner.nextInt();
 
