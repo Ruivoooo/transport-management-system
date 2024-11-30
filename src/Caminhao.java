@@ -56,6 +56,7 @@ public class Caminhao {
         }
         System.out.println("Qual caminhão você vai remover ?");
         int remover = scanner.nextInt();
+        scanner.nextLine();
         caminhoesCadastrados.remove(remover - 1);
         System.out.println("Caminhão removido com sucesso. ");
     }

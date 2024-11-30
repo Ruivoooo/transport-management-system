@@ -1,4 +1,3 @@
-
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -112,7 +111,6 @@ public class Entrega implements Rastreavel {
 
 
         System.out.println("Entrega cadastrada com sucesso!");
-        System.out.println("ID do pedido: " + id + 1);
         System.out.println("Detalhes da entrega: ");
         System.out.println(entrega);
         System.out.println("Motorista associado: " + motoristaEscolher);
@@ -142,41 +140,39 @@ public class Entrega implements Rastreavel {
             }
             System.out.println("----------------------------------------");
         }
-            System.out.println("Qual dessas entregas irá começar ?");
-            int iniciar = scanner.nextInt() - 1;
-            if(iniciar >= 0 && iniciar < entregasCadastradas.size()){
-                Entrega entregaSelecionada = entregasCadastradas.get(iniciar);
-                entregaSelecionada.status = "Em transporte";
-                System.out.println("Status da entrega atualizado com sucesso");
+        System.out.println("Qual dessas entregas irá começar ?");
+        int iniciar = scanner.nextInt() - 1;
+        if(iniciar >= 0 && iniciar < entregasCadastradas.size()){
+            Entrega entregaSelecionada = entregasCadastradas.get(iniciar);
+            entregaSelecionada.status = "Em transporte";
+            System.out.println("Status da entrega atualizado com sucesso");
 
-            }else{
-                System.out.println("Escolha invalida. ");
-            }
+        }else{
+            System.out.println("Escolha invalida. ");
+        }
     }
 
-   public void finalizarEntregas(Entrega entrega){
+    public void finalizarEntregas(Entrega entrega){
         for(Entrega entrega1 : entregasCadastradas) {
             if(entrega1.status == "Em transporte") {
                 System.out.println(entrega1);
             }
         }
         System.out.println("Qual entrega você quer finalizar ? ");
-                int finalizar = scanner.nextInt() - 1;
-                if(finalizar >= 0 && finalizar < entregasCadastradas.size()){
-                    Entrega entregaFinalizada = entregasCadastradas.get(finalizar);
-                    entregaFinalizada.status = "Finalizado";
-                }
-       System.out.println("Entrega finalizada com sucesso. ");
-            }
+        int finalizar = scanner.nextInt() - 1;
+        if(finalizar >= 0 && finalizar < entregasCadastradas.size()){
+            Entrega entregaFinalizada = entregasCadastradas.get(finalizar);
+            entregaFinalizada.status = "Finalizado";
+        }
+        System.out.println("Entrega finalizada com sucesso. ");
+    }
 
     @Override
     public String toString() {
         return   "\nID: " + id +
-                 "\nEndereço de entrega: " + enderecoDest +
-                        "\nData prevista: " + dataPrevista +
-                        "\nStatus pedido: " + status +
-                        "\nHorario do pedido: " + dateTimeFormate;
+                "\nEndereço de entrega: " + enderecoDest +
+                "\nData prevista: " + dataPrevista +
+                "\nStatus pedido: " + status +
+                "\nHorario do pedido: " + dateTimeFormate;
     }
 }
-
-

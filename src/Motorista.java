@@ -73,6 +73,7 @@ public class Motorista {
                 }
             System.out.println("Qual motorista você quer remover: ");
             int remover = scanner.nextInt();
+            scanner.nextLine();
             cadastroMotorista.remove(remover - 1);
             System.out.println("Motorista removido com sucesso.");
         }
