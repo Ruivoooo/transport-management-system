@@ -44,6 +44,8 @@ public class Caminhao {
 
     public void listarCaminhoes(){
         for (Caminhao caminhao : caminhoesCadastrados){
+            System.out.println("LISTA DE CAMINHÕES CADASTRADOS: ");
+            System.out.println("-------------------------------------------------");
             System.out.println(caminhao);
             System.out.println("-------------------------------------------------");
         }

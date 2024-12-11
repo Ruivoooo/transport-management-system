@@ -1,3 +1,4 @@
+import java.io.ObjectInputFilter;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -10,9 +11,10 @@ public class Entrega implements Rastreavel {
 
     private String enderecoDest;
     private String dataPrevista;
-    private String status;
     private static int contador = 1;
     private int id;
+    private StatusPedido statuss;
+
 
     LocalDateTime now = LocalDateTime.now();
     DateTimeFormatter custonFormat = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm:ss");
@@ -20,11 +22,11 @@ public class Entrega implements Rastreavel {
 
     Scanner scanner = new Scanner(System.in);
 
-    public Entrega(int id,String enderecoDest, String dataPrevista, String status) {
+    public Entrega(int id,String enderecoDest, String dataPrevista, StatusPedido statuss) {
         this.id = contador++;
         this.enderecoDest = enderecoDest;
         this.dataPrevista = dataPrevista;
-        this.status = status;
+        this.statuss = StatusPedido.EM_PREPARO;
     }
 
     public int getId() {
@@ -59,8 +61,9 @@ public class Entrega implements Rastreavel {
         int motoristaEscolher = scanner.nextInt();
 
         if (motoristaEscolher > 0 && motoristaEscolher <= motoristas.size()) {
+            Motorista motoristaEscolhido = motoristas.get(motoristaEscolher - 1);
             System.out.println("Motorista escolhido foi: ");
-            System.out.println(motoristas.get(motoristaEscolher - 1));
+            System.out.println(motoristaEscolhido.getNome());
             System.out.println("----------------------------------------");
         } else {
             System.out.println("Escolha invalida");
@@ -104,19 +107,16 @@ public class Entrega implements Rastreavel {
 
         }
 
-        this.status = "Em preparo";
-
-        Entrega entrega = new Entrega(id,enderecoDest, dataPrevista, status);
+        Entrega entrega = new Entrega(id,enderecoDest, dataPrevista, statuss);
         entregasCadastradas.add(entrega);
-
 
         System.out.println("Entrega cadastrada com sucesso!");
         System.out.println("Detalhes da entrega: ");
         System.out.println(entrega);
-        System.out.println("Motorista associado: " + motoristaEscolher);
+        Motorista motoristaNome = motoristas.get(motoristaEscolher - 1);
+        System.out.println("Motorista associado: " + motoristaNome.getNome());
         System.out.println("Caminhão associado: " + caminhaoEscolher);
         System.out.println("----------------------------------------");
-
     }
 
 
@@ -134,37 +134,52 @@ public class Entrega implements Rastreavel {
 
     @Override
     public void iniciarEntrega(Entrega entrega){
-        for (Entrega entrega1 : entregasCadastradas) {
-            if(entrega1.status != "Finalizado") {
-                System.out.println(entrega1);
-            }
-            System.out.println("----------------------------------------");
+        if(entregasCadastradas.isEmpty()){
+            System.out.println("Cadastre uma entrega antes de iniciar.");
+            return;
         }
-        System.out.println("Qual dessas entregas irá começar ?");
+        for (Entrega entrega1 : entregasCadastradas) {
+            if(entrega1.statuss == StatusPedido.EM_PREPARO) {
+                System.out.println(entrega1);
+                System.out.println("----------------------------------------");
+                System.out.println("Qual dessas entregas irá começar ?");
+            }else{
+                System.out.println("Nenhuma entrega cadastrada. ");
+                return;
+            }
+        }
         int iniciar = scanner.nextInt() - 1;
         if(iniciar >= 0 && iniciar < entregasCadastradas.size()){
             Entrega entregaSelecionada = entregasCadastradas.get(iniciar);
-            entregaSelecionada.status = "Em transporte";
+            entregaSelecionada.statuss = StatusPedido.EM_TRANSITO ;
             System.out.println("Status da entrega atualizado com sucesso");
-
         }else{
             System.out.println("Escolha invalida. ");
         }
     }
 
     public void finalizarEntregas(Entrega entrega){
+        if(entregasCadastradas.isEmpty()){
+            System.out.println("Nenhuma entrega em andamento.");
+            return;
+        }
         for(Entrega entrega1 : entregasCadastradas) {
-            if(entrega1.status == "Em transporte") {
+            if(entrega1.statuss == StatusPedido.EM_TRANSITO ) {
                 System.out.println(entrega1);
+                System.out.println("-------------------------------------------------");
+                System.out.println("Qual entrega você quer finalizar ? ");
+            }else{
+                System.out.println("Nenhum pedido para finalizar. ");
+                return;
             }
         }
-        System.out.println("Qual entrega você quer finalizar ? ");
+
         int finalizar = scanner.nextInt() - 1;
         if(finalizar >= 0 && finalizar < entregasCadastradas.size()){
             Entrega entregaFinalizada = entregasCadastradas.get(finalizar);
-            entregaFinalizada.status = "Finalizado";
+            entregaFinalizada.statuss = StatusPedido.FINALIZADO;
+            System.out.println("Entrega finalizada com sucesso. ");
         }
-        System.out.println("Entrega finalizada com sucesso. ");
     }
 
     @Override
@@ -172,7 +187,7 @@ public class Entrega implements Rastreavel {
         return   "\nID: " + id +
                 "\nEndereço de entrega: " + enderecoDest +
                 "\nData prevista: " + dataPrevista +
-                "\nStatus pedido: " + status +
+                "\nStatus pedido: " + statuss +
                 "\nHorario do pedido: " + dateTimeFormate;
     }
 }

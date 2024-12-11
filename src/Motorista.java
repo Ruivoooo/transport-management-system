@@ -60,6 +60,7 @@ public class Motorista {
 
     public void VisualizarMotoristas() {
         System.out.println("LISTA DE MOTORISTAS CADASTRADOS:");
+        System.out.println("-------------------------------------------------");
         for (Motorista motor : cadastroMotorista) {
             System.out.println(motor);
             System.out.println("-------------------------------------------------");
