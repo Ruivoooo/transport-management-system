@@ -26,8 +26,6 @@ public class Main {
                 try{
                 int menu = scanner.nextInt();
 
-
-
                         if (menu == 1) {
                             motorista.CadastroMotoristas();
                         }
@@ -58,6 +56,7 @@ public class Main {
                         if (menu == 10) {
                             entrega.finalizarEntregas(entrega);
                         }
+
                     }catch (InputMismatchException e){
                     System.out.println("Não é permitido letras, digite um numero. ");
                     scanner.nextLine();
