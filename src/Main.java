@@ -61,6 +61,7 @@ public class Main {
                     System.out.println("Não é permitido letras, digite um numero. ");
                     scanner.nextLine();
                     e.printStackTrace();
+
                 }
 
            }

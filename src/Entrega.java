@@ -89,6 +89,7 @@ public class Entrega implements Rastreavel {
         } else {
             System.out.println("Escolha invalida.");
             return;
+
         }
 
 

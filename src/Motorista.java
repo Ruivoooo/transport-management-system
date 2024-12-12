@@ -41,6 +41,7 @@ public class Motorista {
 
     public List<Motorista> getMotoristasCadastrados() {
         return cadastroMotorista;
+
     }
 
     public void CadastroMotoristas(){
