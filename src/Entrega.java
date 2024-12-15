@@ -45,7 +45,7 @@ public class Entrega implements Rastreavel {
     private List<Motorista> motoristas;
     private List<Caminhao> caminhoes;
 
-    public void cadastrarEntrega(List<Motorista> motoristas, List<Caminhao> caminhoes) {
+    public void cadastrarEntrega(List<Motorista> motoristas, List<Caminhao> caminhoes) throws DomainException {
 
         this.motoristas = motoristas;
         this.caminhoes = caminhoes;
@@ -103,9 +103,7 @@ public class Entrega implements Rastreavel {
         LocalDateTime dataPrevistaComHora = prevista.atStartOfDay();
 
         if(dataPrevistaComHora.isBefore(now)){
-            System.out.println("Data fornecida, não pode ser menor que a atual.");
-            return;
-
+            throw new DomainException("Data fornecida não pode ser menor que a atual");
         }
 
         Entrega entrega = new Entrega(id,enderecoDest, dataPrevista, statuss);

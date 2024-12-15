@@ -1,7 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Main {
+public class Main  {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean continuar = true;
@@ -9,7 +9,7 @@ public class Main {
         Caminhao caminhao = new Caminhao();
         Entrega entrega = new Entrega();
 
-            while (continuar) {
+            while (continuar){
 
                 System.out.println("""
                         1 - Cadastro motorista  
@@ -60,8 +60,8 @@ public class Main {
                     }catch (InputMismatchException e){
                     System.out.println("Não é permitido letras, digite um numero. ");
                     scanner.nextLine();
-                    e.printStackTrace();
-
+                }catch (DomainException e){
+                    System.out.println("Data fornecida não pode ser menor que a atual. ");
                 }
 
            }
