@@ -58,12 +58,9 @@ public class Main  {
                         }
 
                     }catch (InputMismatchException e){
-                    System.out.println("Não é permitido letras, digite um numero. ");
                     scanner.nextLine();
-                }catch (DomainException e){
-                    System.out.println("Data fornecida não pode ser menor que a atual. ");
+                    System.out.println("Entrada invalida,por favor digite um numero valido");
                 }
-
            }
        }
 }

@@ -23,7 +23,6 @@ public class Caminhao {
 
     public List<Caminhao> getCaminhoesCadastrados() {
         return caminhoesCadastrados;
-
     }
 
     public void cadastrarCaminhao(){
